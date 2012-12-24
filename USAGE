@@ -1,0 +1,32 @@
+
+Usage:
+	compile:        $ make clean && make
+	install:        # insmod ./syshook.ko
+	activate:       # echo '1' > /proc/syshook/set_syscall_hooks
+	deactivate:     # echo '0' > /proc/syshook/set_syscall_hooks
+	uninstall:      # rmmod syshook
+ 
+Example output:
+	[85546.991768] syshook [INFO]: Loading...
+	[85552.587436] syshook [INFO]: Hooking syscall table...
+	[85552.587440] syshook [INFO]: SYSCALL #41 original addr=8127E26C
+	[85552.587442] syshook [INFO]: SYSCALL #41 new addr=A10FE5A7
+	[85552.587444] syshook [INFO]: SYSCALL #42 original addr=8127E6F7
+	[85552.587445] syshook [INFO]: SYSCALL #42 new addr=A10FE5F2
+	[85552.587447] syshook [INFO]: SYSCALL #49 original addr=8127E44B
+	[85552.587449] syshook [INFO]: SYSCALL #49 new addr=A10FE63F
+	[85552.587451] syshook [INFO]: SYSCALL #54 original addr=8127EB8A
+	[85552.587452] syshook [INFO]: SYSCALL #54 new addr=A10FE68C
+	[85560.774609] syshook [INFO]: new_socketcall() invoked!
+	[85560.774625] syshook [INFO]: new_sock_bind() invoked!
+	[85560.774667] syshook [INFO]: new_socketcall() invoked!
+	[85560.774675] syshook [INFO]: new_sock_connect() invoked!
+	[85561.415100] syshook [INFO]: new_sock_bind() invoked!
+	[85561.474901] syshook [INFO]: new_sock_setsockopt() invoked
+	[85576.793761] syshook [INFO]: Unloading...
+	[85576.793765] syshook [INFO]: Unhooking syscall table...
+	[85576.793767] syshook [INFO]: SYSCALL #41 restored original addr=8127E26C
+	[85576.793769] syshook [INFO]: SYSCALL #42 restored original addr=8127E6F7
+	[85576.793771] syshook [INFO]: SYSCALL #49 restored original addr=8127E44B
+	[85576.793773] syshook [INFO]: SYSCALL #54 restored original addr=8127EB8A
+
