@@ -39,7 +39,6 @@ static int procfs_read(char* page, char** start, off_t off, int count, int* eof,
 
 static int procfs_write(struct file* file, const char* buffer, unsigned long count, void* data)
 {
-	int len;
 	char str[DATA_TRANSFER_SIZE_MAX];
 
 	if (count > DATA_TRANSFER_SIZE_MAX) {
@@ -47,14 +46,12 @@ static int procfs_write(struct file* file, const char* buffer, unsigned long cou
 		return -ENOMEM;
 	}
 
-	len = DATA_TRANSFER_SIZE_MAX > count ? count : DATA_TRANSFER_SIZE_MAX;
-
-	if (copy_from_user(str, buffer, len)) {
+	if (copy_from_user(str, buffer, count)) {
 		LOG_ERROR("Unable to read data from user space\n");
 		return -EFAULT;
 	}
 
-	str[len] = '\0';
+	str[count] = '\0';
 
 	return KMOD_WRITE_DATA(str);
 }
